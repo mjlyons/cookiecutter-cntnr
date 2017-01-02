@@ -33,7 +33,7 @@ You'll still need to write docker-compose configurations and implement docker co
 
 ## Using cookiecutter-cntnr
 
-First-time setup:
+One-time setup:
 
 1. [Install cookiecutter](https://cookiecutter.readthedocs.io/en/latest/installation.html)
 
@@ -41,11 +41,13 @@ First-time setup:
 
 3. Cookiecutter will ask you to provide a few settings to populate the template.
 
-When you open a new terminal:
+Each time you open a new terminal:
 
 1. Source the setup script (the locations will be different if you don't use the default location):
     * For development: `source scripts/cntnr/setup-env-dev.sh`
     * For production: `source scripts/cntnr/setup-env-prod.sh`
+
+2. Use the comamnds!
 
 ## Template parameters:
 
@@ -74,5 +76,5 @@ Also note cookiecutter-cntnr asusmes you're using the `generic` (SSH) driver for
 
 ## License
 
-cookiecutter-cntnr is released under the MIT License. See License.txt in this repository for full info.
+cookiecutter-cntnr is released under the MIT License. See `LICENSE` in this repository for full info.
 
