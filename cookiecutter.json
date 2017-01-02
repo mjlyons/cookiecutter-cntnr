@@ -1,0 +1,14 @@
+{
+  "cntnr_path": "scripts/cntnr",
+  "project_name": "ProjectX",
+  "project_root_path": "~/src/project-x",
+  "cmd_prefix": "prjx",
+  "envvar_prefix": "PROJECT_X",
+  "machine_prefix": "ProjectX-machine",
+  "bridge_ip_cidr": "192.168.130.1/24",
+  "dev_docker_driver": "vmwarefusion",
+  "prod_docker_driver": "generic",
+  "prod_fqdn": "projectx.example.org",
+  "prod_ssh_private_key_path": "~/.ssh/id_rsa",
+  "prod_user": "root"
+}
