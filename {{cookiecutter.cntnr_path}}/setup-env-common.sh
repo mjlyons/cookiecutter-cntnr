@@ -37,6 +37,7 @@ echo "- Creating {{cookiecutter.cmd_prefix}}-machine aliases"
 alias {{cookiecutter.cmd_prefix}}-machine-create="docker-machine create ${{cookiecutter.envvar_prefix|upper}}_MACHINE_DRIVER $MACHINE_ENGINE_OPT ${{cookiecutter.envvar_prefix|upper}}_MACHINE"
 alias {{cookiecutter.cmd_prefix}}-machine-start="docker-machine start ${{cookiecutter.envvar_prefix|upper}}_MACHINE"
 alias {{cookiecutter.cmd_prefix}}-machine-stop="docker-machine stop ${{cookiecutter.envvar_prefix|upper}}_MACHINE"
+alias {{cookiecutter.cmd_prefix}}-machine-destroy="docker-machine rm ${{cookiecutter.envvar_prefix|upper}}_MACHINE"
 
 echo -n "- Check if {{cookiecutter.cmd_prefix}}-machine exists... "
 docker-machine ls -q | grep -q "^${{cookiecutter.envvar_prefix|upper}}_MACHINE\$"
