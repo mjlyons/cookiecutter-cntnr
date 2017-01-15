@@ -29,9 +29,9 @@ echo "- Define local constants"
 {{cookiecutter.envvar_prefix|lower}}_container_prefix="$(basename `pwd`)_"
 
 echo "- Build paths"
-{{cookiecutter.envvar_prefix|lower}}_root_path=$(pwd)
-{{cookiecutter.envvar_prefix|lower}}_docker_compose_common_path="${{cookiecutter.envvar_prefix|lower}}_root_path/${{cookiecutter.envvar_prefix|lower}}_docker_compose_common_filename"
-{{cookiecutter.envvar_prefix|lower}}_docker_compose_override_path="${{cookiecutter.envvar_prefix|lower}}_root_path/${{cookiecutter.envvar_prefix|upper}}_DOCKER_COMPOSE_OVERRIDE_FILENAME"
+export {{cookiecutter.envvar_prefix|upper}}_ROOT_PATH=$(pwd)
+{{cookiecutter.envvar_prefix|lower}}_docker_compose_common_path="${{cookiecutter.envvar_prefix|upper}}_ROOT_PATH/${{cookiecutter.envvar_prefix|lower}}_docker_compose_common_filename"
+{{cookiecutter.envvar_prefix|lower}}_docker_compose_override_path="${{cookiecutter.envvar_prefix|upper}}_ROOT_PATH/${{cookiecutter.envvar_prefix|upper}}_DOCKER_COMPOSE_OVERRIDE_FILENAME"
 
 echo "- Creating {{cookiecutter.cmd_prefix}}-machine aliases"
 alias {{cookiecutter.cmd_prefix}}-machine-create="docker-machine create ${{cookiecutter.envvar_prefix|upper}}_MACHINE_DRIVER $MACHINE_ENGINE_OPT ${{cookiecutter.envvar_prefix|upper}}_MACHINE"
@@ -108,5 +108,8 @@ alias {{cookiecutter.cmd_prefix}}-restart="{{cookiecutter.cmd_prefix}}-down && {
 alias {{cookiecutter.cmd_prefix}}-logs="{{cookiecutter.cmd_prefix}} logs"
 alias {{cookiecutter.cmd_prefix}}-containers="docker ps --format "{{"{{"}}.Names{{"}}"}}" | grep "${{cookiecutter.envvar_prefix|lower}}_container_prefix" | sed s/${{cookiecutter.envvar_prefix|lower}}_container_prefix//"
 alias {{cookiecutter.cmd_prefix}}-volume-ls="docker volume ls --quiet --filter name=${{cookiecutter.envvar_prefix|lower}}_container_prefix | sed s/${{cookiecutter.envvar_prefix|lower}}_container_prefix//"
+
+echo "- Sourcing custom post-config script: {{cookiecutter.common_post_config_script}}"
+source {{cookiecutter.common_post_config_script}}
 
 echo "√ {{cookiecutter.project_name}} environment configured!"
