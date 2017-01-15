@@ -18,12 +18,16 @@ Note that CMD will be whatever you pick for `cmd_prefix`. Here's the most common
 
 * `CMD`: Alias for `docker` customized for your project.
 * `CMD-machine-start`: Starts the docker-machine. It'll create the machine if it doesn't exist yet.
+* `CMD-machine-ip`: Returns the IP of your machine is.
+* `CMD-machine-host`: Points your FQDN to your machine's IP in /etc/hosts.
 * `CMD-machine-stop`: Stops the docker-machine.
 * `CMD-restart`: Stops all containers, rebuilds them, and starts them back up.
 * `CMD-logs`: Shows the latest logs from all containers. Use `CMD-logs -f` to show new logs as they happen.
 * `CMD-containers`: Shows a list of the running containers.
 * `CMD-run CONTAINER COMMAND`: Runs a command on the container. 
 * `CMD-term CONTAINER`: Opens a terminal on the container.
+* `CMD-volume-ls`: Lists named volumes for your project.
+* `CMD-volume-rm VOLUME`: Removes a named volume for your project.
 
 ## How does it work?
 
@@ -60,9 +64,10 @@ Each time you open a new terminal:
 * `bridge_ip_cidr`: IP range that can be used for network bridge between docker-machine and physical machine.
 * `dev_docker_driver`: Docker driver used for development. Common settings include `vmwarefusion` or `virtualbox`.
 * `prod_docker_driver`: Docker driver used for production. Only `generic` is supported.
-* `prod_fqdn`: Full domain name of machine in production (example: `example.org`)
+* `fqdn`: Full domain name of machine (example: `example.org`)
 * `prod_ssh_private_key_path`: Absolute path of SSH private key used to push to production.
 * `prod_user`: SSH user on production for users.
+* `common_post_config_script`: command to execute once config is done. `:` by default (no-op).
 
 ## Assumptions
 
