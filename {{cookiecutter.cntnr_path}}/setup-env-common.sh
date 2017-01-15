@@ -38,6 +38,7 @@ alias {{cookiecutter.cmd_prefix}}-machine-create="docker-machine create ${{cooki
 alias {{cookiecutter.cmd_prefix}}-machine-start="docker-machine start ${{cookiecutter.envvar_prefix|upper}}_MACHINE"
 alias {{cookiecutter.cmd_prefix}}-machine-stop="docker-machine stop ${{cookiecutter.envvar_prefix|upper}}_MACHINE"
 alias {{cookiecutter.cmd_prefix}}-machine-destroy="docker-machine rm ${{cookiecutter.envvar_prefix|upper}}_MACHINE"
+alias {{cookiecutter.cmd_prefix}}-machine-ip="docker-machine ip ${{cookiecutter.envvar_prefix|upper}}_MACHINE"
 
 echo -n "- Check if {{cookiecutter.cmd_prefix}}-machine exists... "
 docker-machine ls -q | grep -q "^${{cookiecutter.envvar_prefix|upper}}_MACHINE\$"
@@ -90,6 +91,15 @@ echo "- Define {{cookiecutter.cmd_prefix}} helper commands"
     fi
 }
 
+{{cookiecutter.cmd_prefix}}-volume-rm() {
+    if [ "$#" -ne 1 ]; then
+        echo "Usage: {{cookiecutter.cmd_prefix}}-term container_name"
+        echo "  ...you can find container_name using '{{cookiecutter.cmd_prefix}}-containers'"
+    else
+          docker volume rm ${{cookiecutter.envvar_prefix|lower}}_container_prefix$1
+    fi
+}
+
 alias {{cookiecutter.cmd_prefix}}="docker-compose -f ${{cookiecutter.envvar_prefix|lower}}_docker_compose_common_path -f ${{cookiecutter.envvar_prefix|upper}}_DOCKER_COMPOSE_OVERRIDE_FILENAME"
 alias {{cookiecutter.cmd_prefix}}-build="{{cookiecutter.cmd_prefix}} build"
 alias {{cookiecutter.cmd_prefix}}-up="{{cookiecutter.cmd_prefix}} up -d"
@@ -97,4 +107,6 @@ alias {{cookiecutter.cmd_prefix}}-down="{{cookiecutter.cmd_prefix}} down"
 alias {{cookiecutter.cmd_prefix}}-restart="{{cookiecutter.cmd_prefix}}-down && {{cookiecutter.cmd_prefix}}-build && {{cookiecutter.cmd_prefix}}-up"
 alias {{cookiecutter.cmd_prefix}}-logs="{{cookiecutter.cmd_prefix}} logs"
 alias {{cookiecutter.cmd_prefix}}-containers="docker ps --format "{{"{{"}}.Names{{"}}"}}" | grep "${{cookiecutter.envvar_prefix|lower}}_container_prefix" | sed s/${{cookiecutter.envvar_prefix|lower}}_container_prefix//"
+alias {{cookiecutter.cmd_prefix}}-volume-ls="docker volume ls --quiet --filter name=${{cookiecutter.envvar_prefix|lower}}_container_prefix | sed s/${{cookiecutter.envvar_prefix|lower}}_container_prefix//"
+
 echo "√ {{cookiecutter.project_name}} environment configured!"
