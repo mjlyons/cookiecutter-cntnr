@@ -100,6 +100,18 @@ echo "- Define {{cookiecutter.cmd_prefix}} helper commands"
     fi
 }
 
+{{cookiecutter.cmd_prefix}}-machine-host(){
+  # clear existing docker.local entry from /etc/hosts
+  domain_regex=$(echo "/[[:space:]]{{cookiecutter.fqdn}}\$/d" | sed 's/\./\\\./g')
+  sudo sed -i '' "$domain_regex" /etc/hosts
+
+  # get ip of running machine
+  host_ip="$({{cookiecutter.cmd_prefix}}-machine-ip)"
+
+  # update /etc/hosts with docker machine ip
+  [[ -n $host_ip ]] && sudo /bin/bash -c "echo \"$host_ip {{cookiecutter.fqdn}}\" >> /etc/hosts"
+}
+
 alias {{cookiecutter.cmd_prefix}}="docker-compose -f ${{cookiecutter.envvar_prefix|lower}}_docker_compose_common_path -f ${{cookiecutter.envvar_prefix|upper}}_DOCKER_COMPOSE_OVERRIDE_FILENAME"
 alias {{cookiecutter.cmd_prefix}}-build="{{cookiecutter.cmd_prefix}} build"
 alias {{cookiecutter.cmd_prefix}}-up="{{cookiecutter.cmd_prefix}} up -d"
