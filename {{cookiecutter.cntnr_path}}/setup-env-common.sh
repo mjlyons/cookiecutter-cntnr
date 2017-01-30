@@ -112,6 +112,24 @@ echo "- Define {{cookiecutter.cmd_prefix}} helper commands"
   [[ -n $host_ip ]] && sudo /bin/bash -c "echo \"$host_ip {{cookiecutter.fqdn}}\" >> /etc/hosts"
 }
 
+{{cookiecutter.cmd_prefix}}-copy-into() {
+    if [ "$#" -ne 3 ]; then
+        echo "Usage: {{cookiecutter.cmd_prefix}}-copy-into container_name host_path container_path"
+        echo "  ...you can find container_name using 'ch-containers'"
+    else
+        docker container cp $2 ${{cookiecutter.envvar_prefix|lower}}_container_prefix$1:$3
+    fi
+}
+
+{{cookiecutter.cmd_prefix}}-copy-out() {
+    if [ "$#" -ne 3 ]; then
+        echo "Usage: {{cookiecutter.cmd_prefix}}-copy-out container_name container_path host_path"
+        echo "  ...you can find container_name using '{{cookiecutter.cmd_prefix}}-containers'"
+    else
+        docker container cp ${{cookiecutter.envvar_prefix|lower}}_container_prefix$1:$2 $3
+    fi
+}
+
 alias {{cookiecutter.cmd_prefix}}="docker-compose -f ${{cookiecutter.envvar_prefix|lower}}_docker_compose_common_path -f ${{cookiecutter.envvar_prefix|upper}}_DOCKER_COMPOSE_OVERRIDE_FILENAME"
 alias {{cookiecutter.cmd_prefix}}-build="{{cookiecutter.cmd_prefix}} build"
 alias {{cookiecutter.cmd_prefix}}-up="{{cookiecutter.cmd_prefix}} up -d"
