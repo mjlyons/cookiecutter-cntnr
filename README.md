@@ -28,6 +28,8 @@ Note that CMD will be whatever you pick for `cmd_prefix`. Here's the most common
 * `CMD-term CONTAINER`: Opens a terminal on the container.
 * `CMD-volume-ls`: Lists named volumes for your project.
 * `CMD-volume-rm VOLUME`: Removes a named volume for your project.
+* `CMD-copy-into CONTAINER HOST_PATH CONTAINER_PATH`: Copies a file from the host to the container.
+* `CMD-copy-out CONTAINER CONTAINER_PATH HOST_PATH`: Copies a file from the container to the host.
 
 ## How does it work?
 
