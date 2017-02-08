@@ -8,7 +8,7 @@
   "bridge_ip_cidr": "192.168.130.1/24",
   "dev_docker_driver": "vmwarefusion",
   "prod_docker_driver": "generic",
-  "fqdn": "projectx.example.org",
+  "root_domain": "projectx.example.org",
   "prod_ssh_private_key_path": "~/.ssh/id_rsa",
   "prod_user": "root",
   "common_post_config_script": ":"
