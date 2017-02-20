@@ -100,16 +100,36 @@ echo "- Define {{cookiecutter.cmd_prefix}} helper commands"
     fi
 }
 
-{{cookiecutter.cmd_prefix}}-machine-host(){
+{{cookiecutter.cmd_prefix}}-machine-host-add() {
   # clear existing docker.local entry from /etc/hosts
-  domain_regex=$(echo "/[[:space:]]{{cookiecutter.root_domain}}\$/d" | sed 's/\./\\\./g')
+  # Called by itself, will add entry for root domain (ex: dev.clearhive.com)
+  # For subdomains, use subdomain. as parameter:
+  # ex: `ch-machine-host www.` would add an entry for www.dev.clearhive.com
+
+  rootdomain={{cookiecutter.root_domain}}
+  subdomain=$1
+  fqdn="$subdomain$rootdomain"
+
+  echo "Adding hostname: $fqdn"
+
+  domain_regex=$(echo "/[[:space:]]$fqdn\$/d" | sed 's/\./\\\./g')
   sudo sed -i '' "$domain_regex" /etc/hosts
 
   # get ip of running machine
   host_ip="$({{cookiecutter.cmd_prefix}}-machine-ip)"
 
   # update /etc/hosts with docker machine ip
-  [[ -n $host_ip ]] && sudo /bin/bash -c "echo \"$host_ip {{cookiecutter.root_domain}}\" >> /etc/hosts"
+  [[ -n $host_ip ]] && sudo /bin/bash -c "echo \"$host_ip $fqdn\" >> /etc/hosts"
+}
+
+declare -a subdomains=()
+# Run this command later to add subdomains:
+#   `declare -a subdomains=("www." "mta.")`
+{{cookiecutter.cmd_prefix}}-machine-host() {
+    {{cookiecutter.cmd_prefix}}-machine-host-add
+    for subdomain in ${subdomains[@]}; do
+        {{cookiecutter.cmd_prefix}}-machine-host-add "$subdomain"
+    done
 }
 
 {{cookiecutter.cmd_prefix}}-copy-into() {
