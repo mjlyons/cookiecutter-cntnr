@@ -9,4 +9,6 @@ export {{cookiecutter.envvar_prefix|upper}}_MACHINE_DRIVER="--driver {{cookiecut
 export {{cookiecutter.envvar_prefix|upper}}_DOCKER_COMPOSE_OVERRIDE_FILENAME="docker-compose-dev.yml"
 export {{cookiecutter.envvar_prefix|upper}}_ENGINE_OPT="--engine-opt=\"bip={{cookiecutter.bridge_ip_cidr}}\""
 
+export {{cookiecutter.envvar_prefix|upper}}_DEV="true"
+
 . $(dirname $BASH_SOURCE)/setup-env-common.sh

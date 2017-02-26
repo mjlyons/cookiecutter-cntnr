@@ -24,12 +24,15 @@ echo "- Check required environment variables"
 [ "$?" -ne "0" ] && fail-abort-msg && return  # return-on-error
 
 
+echo "- Define exported constants"
+export {{cookiecutter.envvar_prefix|upper}}_ROOT_PATH=$(pwd)
+export {{cookiecutter.envvar_prefix|upper}}_ROOT_DOMAIN="{{cookiecutter.root_domain}}"
+
 echo "- Define local constants"
 {{cookiecutter.envvar_prefix|lower}}_docker_compose_common_filename="docker-compose-common.yml"
 {{cookiecutter.envvar_prefix|lower}}_container_prefix="$(basename `pwd`)_"
 
 echo "- Build paths"
-export {{cookiecutter.envvar_prefix|upper}}_ROOT_PATH=$(pwd)
 {{cookiecutter.envvar_prefix|lower}}_docker_compose_common_path="${{cookiecutter.envvar_prefix|upper}}_ROOT_PATH/${{cookiecutter.envvar_prefix|lower}}_docker_compose_common_filename"
 {{cookiecutter.envvar_prefix|lower}}_docker_compose_override_path="${{cookiecutter.envvar_prefix|upper}}_ROOT_PATH/${{cookiecutter.envvar_prefix|upper}}_DOCKER_COMPOSE_OVERRIDE_FILENAME"
 
