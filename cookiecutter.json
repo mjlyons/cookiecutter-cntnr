@@ -7,10 +7,15 @@
   "machine_prefix": "ProjectX-machine",
   "bridge_ip_cidr": "192.168.130.1/24",
   "dev_docker_driver": "vmwarefusion",
-  "prod_docker_driver": "generic",
+  "prod_docker_driver": "digitalocean",
   "root_domain": "projectx.example.org",
   "prod_ssh_private_key_path": "~/.ssh/id_rsa",
   "prod_user": "root",
   "common_post_config_script": ":",
-  "local_docker_driver": "vmwarefusion"
+  "digitalocean_access_token": "only-populate-if-using-digitalocean",
+  "digitalocean_size": "1gb",
+  "digitalocean_ssh_key_fingerprint": "01:23:45:67:89:AB:CD:EF:01:23:45:67:89:AB:CD:EF",
+  "digitalocean_ipv6": "true",
+  "digitalocean_private_net": "true",
+  "digitalocean_backups": "true"
 }
