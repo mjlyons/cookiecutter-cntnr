@@ -27,6 +27,7 @@ echo "- Check required environment variables"
 echo "- Define exported constants"
 export {{cookiecutter.envvar_prefix|upper}}_ROOT_PATH=$(pwd)
 export {{cookiecutter.envvar_prefix|upper}}_ROOT_DOMAIN="{{cookiecutter.root_domain}}"
+export {{cookiecutter.envvar_prefix|upper}}_DEV_DOCKER_DRIVER="{{cookiecutter.dev_docker_driver}}"
 
 echo "- Define local constants"
 {{cookiecutter.envvar_prefix|lower}}_docker_compose_common_filename="docker-compose-common.yml"

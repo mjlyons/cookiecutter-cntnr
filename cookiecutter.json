@@ -11,5 +11,6 @@
   "root_domain": "projectx.example.org",
   "prod_ssh_private_key_path": "~/.ssh/id_rsa",
   "prod_user": "root",
-  "common_post_config_script": ":"
+  "common_post_config_script": ":",
+  "local_docker_driver": "vmwarefusion"
 }
