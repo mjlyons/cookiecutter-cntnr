@@ -158,7 +158,7 @@ alias {{cookiecutter.cmd_prefix}}="docker-compose -f ${{cookiecutter.envvar_pref
 alias {{cookiecutter.cmd_prefix}}-build="{{cookiecutter.cmd_prefix}} build"
 alias {{cookiecutter.cmd_prefix}}-up="{{cookiecutter.cmd_prefix}} up -d"
 alias {{cookiecutter.cmd_prefix}}-down="{{cookiecutter.cmd_prefix}} down"
-alias {{cookiecutter.cmd_prefix}}-restart="{{cookiecutter.cmd_prefix}}-down && {{cookiecutter.cmd_prefix}}-build && {{cookiecutter.cmd_prefix}}-up"
+alias {{cookiecutter.cmd_prefix}}-restart="{{cookiecutter.cmd_prefix}}-build && {{cookiecutter.cmd_prefix}}-down && {{cookiecutter.cmd_prefix}}-up"
 alias {{cookiecutter.cmd_prefix}}-logs="{{cookiecutter.cmd_prefix}} logs"
 alias {{cookiecutter.cmd_prefix}}-containers="docker ps --format "{{"{{"}}.Names{{"}}"}}" | grep "${{cookiecutter.envvar_prefix|lower}}_container_prefix" | sed s/${{cookiecutter.envvar_prefix|lower}}_container_prefix//"
 alias {{cookiecutter.cmd_prefix}}-volume-ls="docker volume ls --quiet --filter name=${{cookiecutter.envvar_prefix|lower}}_container_prefix | sed s/${{cookiecutter.envvar_prefix|lower}}_container_prefix//"
